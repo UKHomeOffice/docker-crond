@@ -1,7 +1,7 @@
 FROM quay.io/ukhomeofficedigital/docker-centos-base
 
 ENV CRON_USER cron
-ENV APP_DATA /var/atlassian/application-data/confluence
+ENV APP_DATA /var/data
 ENV BACKUP_DIR /var/backups
 ENV SHARE_DIR ${BACKUP_DIR}/share
 
@@ -18,7 +18,7 @@ RUN mkdir -p ${SHARE_DIR}
 RUN yum update -y && \
     yum install -y \
       cronie-noanacron \
-    yum -y clean all && \
+    yum -y clean all§
 
 # Configure config before being replaced by exec'd cmd.
 COPY start.sh /
