@@ -8,5 +8,5 @@ while true; do
   sleep ${CRON_TIME}
 
   # Run the CRON COMMAND
-  ${CRON_CMD}
+  /bin/bash -c "${CRON_CMD}"
 done;
