@@ -1,9 +1,12 @@
 #!/bin/bash -ex
 
-# Add our cron - commented out as got "better" idea
-#env > /env.txt
-#echo "${CRON_TIME} ${CRON_USER} source /env.txt && ${CRON_CMD} > /dev/stdout 2>&1" >> /etc/crontab
+# cron doesn't have acces to env, this is simpler than fixing that.
+useradd -D ${CRON_USER}
 
+# Sleep the interval.
+sleep ${CRON_TIME}
 
-# Run crond as pid 1.  
-exec /usr/bin/crond -n -s
+# Run the CRON COMMAND
+${CRON_CMD}
+
+# Should happily exit, then the container will restart and sleep again.
