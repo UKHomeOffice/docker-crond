@@ -1,8 +1,14 @@
 #!/bin/bash -ex
 
-# cron doesn't have acces to env, this is simpler than fixing that.
+# cron doesn't have acces to env, this is simpler than fixing that
+
+# Make sure share dir exists
+if [ ! -d "$SHARE_DIR" ]; then
+  mkdir -p ${SHARE_DIR}
+fi
+
+# Add user.  We don't always need it but might be important for gitlab for example.
 useradd  ${CRON_USER}
-mkdir -p ${SHARE_DIR}
 
 while true; do
   # Sleep the interval.

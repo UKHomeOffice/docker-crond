@@ -11,7 +11,7 @@ ENV CRON_USER ${APP_USER}
 ENV CRON_CMD  mysqldump -u ${DB_USER} -p${DB_PASS} -h ${DB_HOST} ${DB_NAME} > ${APP_DATA}/${DB_NAME}.sql \
               tar zcvf ${BACKUP_DIR}/${DB_NAME}-$(date +%s).tar.gz ${APP_DATA} \
               rm ${APP_DATA}/${DB_NAME}.sql \
-              mv ${BACKUP_DIR}/*.tar.gz ${SHARE_DIR}/
+              mv ${BACKUP_DIR}/*.tar.gz ${SHARE_DIR}
 
 # Install supervsior, crond & mysql client.
 RUN yum update -y && \
